@@ -1,0 +1,28 @@
+{
+  "name": "ddys-edge-extension",
+  "version": "0.1.0",
+  "description": "Microsoft Edge extension for DDYS quick search, discovery, watchlist, subscriptions, and notifications.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/ddysiodev/ddys-edge-extension",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddysiodev/ddys-edge-extension.git"
+  },
+  "keywords": [
+    "ddys",
+    "edge-extension",
+    "movies",
+    "watchlist",
+    "manifest-v3"
+  ],
+  "scripts": {
+    "check": "node tools/check.mjs",
+    "test": "node tools/check.mjs && node --test tests/*.test.mjs",
+    "build:zip": "powershell -ExecutionPolicy Bypass -File tools/build-package.ps1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+package/
+coverage/
+*.zip
+*.crx
+*.pem
+*.log
+*.tmp
+.env
+.env.*
+!.env.example

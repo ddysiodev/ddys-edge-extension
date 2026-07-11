@@ -1,0 +1,97 @@
+{
+  "manifest_version": 3,
+  "name": "DDYS Edge Extension",
+  "short_name": "DDYS Edge",
+  "version": "0.1.0",
+  "description": "低端影视 DDYS 的 Microsoft Edge 扩展：搜索、最新、热门、日历、收藏、订阅提醒和资源入口。",
+  "minimum_chrome_version": "116",
+  "default_locale": "zh_CN",
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "32": "assets/icons/icon-32.png",
+    "48": "assets/icons/icon-48.png",
+    "128": "assets/icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "DDYS",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon-16.png",
+      "32": "assets/icons/icon-32.png",
+      "48": "assets/icons/icon-48.png",
+      "128": "assets/icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "options_page": "options.html",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "omnibox": {
+    "keyword": "ddys"
+  },
+  "permissions": [
+    "activeTab",
+    "alarms",
+    "contextMenus",
+    "notifications",
+    "sidePanel",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://ddys.io/*",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "src/content-script.js"
+      ],
+      "css": [
+        "src/content-script.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "open-dashboard": {
+      "suggested_key": {
+        "default": "Alt+D"
+      },
+      "description": "打开 DDYS 面板"
+    },
+    "search-selection": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "搜索当前选中文本"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; base-uri 'self'; frame-ancestors 'none'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/icons/*.png"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ]
+}
